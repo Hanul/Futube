@@ -1,0 +1,59 @@
+<App Theme="Basic" Background="#eee">
+	<DockPanel>
+		<JavaScript File="MainView.js"/>
+		<StackPanel Dock="Top" Background="#3CB5D0">
+			<StatusBarBackground/>
+			<iOS.StatusBarConfig Style="Light"/>
+			<Panel Dock="Top" Height="50">
+
+				<Button ux:Name="backButton" Alignment="Left" Width="90" Opacity="0" IgnoreStyle="true"
+						Padding="20,0,0,0" Height="50" Clicked="{goBack}" HitTestMode="LocalBounds" >
+					<DockPanel>
+						<Image File="arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
+						<Text TextAlignment="Center" Alignment="Center" Margin="5,0,0,0"
+							  FontSize="20" TextColor="#fff" Dock="Right">
+						</Text>
+					</DockPanel>
+				</Button>
+				<Text Value="{currentPageTitle}" Alignment="Center"
+					  FontSize="25" TextColor="#FFF"/>
+			</Panel>
+		</StackPanel>
+
+		<DirectNavigation Active="{currentPageHandle}"/>
+
+		<Page Name="pagesList">
+			<ScrollView>
+				<StackPanel>
+					<Each Items="{pages}">
+						<Button Clicked="{pageButtonClicked}"
+								Height="50" Margin="5" IgnoreStyle="true">
+							<Rectangle Layer="Background" CornerRadius="3"
+									   Fill="#FF8362" />
+							<ButtonText Value="{title}" TextAlignment="Center"
+										TextColor="#fff" FontSize="13"/>
+						</Button>
+					</Each>
+				</StackPanel>
+			</ScrollView>
+
+			<ExitingAnimation>
+				<Move X="-1" RelativeTo="Size"
+					  Duration="0.3" Easing="CircularInOut"/>
+				<Change backButton.Opacity="1" Duration="0.3"/>
+			</ExitingAnimation>
+		</Page>
+
+		<Each Items="{pages}">
+			<Page Name="{handle}">
+				<Text Value="{title}" FontSize="50"
+					  TextColor="#3C4663" Alignment="TopCenter"/>
+				<Image Url="{thumbnail}" Alignment="Center"/>
+				<ExitingAnimation>
+					<Move X="1" RelativeTo="Size" Duration="0.3" Easing="CircularInOut"/>
+				</ExitingAnimation>
+			</Page>
+		</Each>
+
+	</DockPanel>
+</App>
