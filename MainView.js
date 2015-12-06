@@ -49,6 +49,7 @@ function search() {
                             description: itemInfo.snippet.description,
                             channelTitle: itemInfo.snippet.channelTitle,
                             handle: itemInfo.id,
+                            embed : 'http://www.youtube.com/embed/' + itemInfo.id,
                             thumbnail: itemInfo.snippet.thumbnails.medium.url
                         });
                     }
@@ -74,6 +75,7 @@ function search() {
                             description: itemInfo.snippet.description,
                             channelTitle: itemInfo.snippet.channelTitle,
                             handle: itemInfo.id.videoId,
+                            embed : 'http://www.youtube.com/embed/' + itemInfo.id,
                             thumbnail: itemInfo.snippet.thumbnails.medium.url
                         });
                     }
